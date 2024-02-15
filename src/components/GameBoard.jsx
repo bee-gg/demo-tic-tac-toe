@@ -1,20 +1,6 @@
 
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-export default function GameBoard({ onSelectSquare, turns }) {
-  let gameBoard = initialGameBoard;
-
-  for (const turn of turns){ // if turns is empty array - loop wont execute
-    const { square, player } = turn; // destructuring from turns array v bellow too
-    const { row, col} = square;
-
-    gameBoard[row][col] = player; // deriving state - gameTurns from App
-  }  
-
-
+export default function GameBoard({ onSelectSquare, board }) {
+  
   // const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   // function handleSelectSquare(rowIndex, colIndex){ //to find which null to click
@@ -30,7 +16,7 @@ export default function GameBoard({ onSelectSquare, turns }) {
   // }
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowIndex) => (
+      {board.map((row, rowIndex) => (
         <li key={rowIndex}>
           <ol>
             {row.map((playerSymbol, colIndex) => (
