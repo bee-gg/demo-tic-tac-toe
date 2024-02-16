@@ -10,7 +10,7 @@ const PLAYERS = {
   O: 'Player 2'
 };
  
-const dinitialGameBoar = [
+const INITIAL_GAMEBOARD = [
   [null, null, null],
   [null, null, null],
   [null, null, null],
@@ -25,7 +25,7 @@ function deriveActivePlayer(gameTurns){
 }
 
 function deriveGameBoard(gameTurns){
-  let gameBoard = [...initialGameBoard.map(array => [...array])];
+  let gameBoard = [...INITIAL_GAMEBOARD.map(array => [...array])];
 
   for (const turn of gameTurns){ // if turns is empty array - loop wont execute
     const { square, player } = turn; // destructuring from turns array v bellow too
@@ -58,7 +58,6 @@ function deriveWinner(gameBoard, players){
 function App() {
   const [players, setPlayers] = useState((PLAYERS));
   const [gameTurns, setGameTurns] = useState([]); //turn data
-  //const [activePlayer, setActivePlayer] = useState("X");
 
   const activePlayer = deriveActivePlayer(gameTurns);
   const gameBoard =deriveGameBoard(gameTurns);
@@ -66,7 +65,6 @@ function App() {
   const hasDraw = gameTurns.length === 9 && !winner;
 
   function handleSelectSquare(rowIndex, colIndex) {
-    //setActivePlayer((curActivePlayer) => (curActivePlayer === "X" ? "O" : "X"));
     setGameTurns((prevTurns) => {
       const currentPlayer = deriveActivePlayer(prevTurns);
 
